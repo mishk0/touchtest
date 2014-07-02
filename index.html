@@ -20,7 +20,7 @@
 <body>
 
     <div class="div1" style="height:100px; background:#f00">CLICK ME !!!</div>
-    <a href="//www.yandex.ru" class="div2" style="height:100px; background:#0f0">CLICK ME !!!</a>
+    <a href="http://www.yandex.ru" class="div2" style="height:100px; background:#0f0">CLICK ME !!!</a>
     <span></span>
     <script>
         var l = 0;
@@ -33,7 +33,7 @@
             addPixel(chX, chY);
             el2.innerHTML += e.type + ' ' + ' ' + e.currentTarget.classList[0] + ' : ' + (new Date().getTime() - l) + '</br>';
             l = new Date().getTime();
-            e.stopPropagation();
+            e.preventDefault();
         }
 
         function addPixel(chX, chY) {
