@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no">
+    <title>Document</title>
+</head>
+<style>
+    .pixel {
+        position: absolute;
+        width: 1px;
+        height:1px;
+        background: #000;
+    }
+</style>
+<body>
+
+    <div class="div1" style="height:100px; background:#f00">CLICK ME !!!</div>
+    <div class="div2" style="height:100px; background:#0f0">CLICK ME !!!</div>
+    <span></span>
+    <script>
+        var l = 0;
+        var el = document.querySelector('.div1');
+        var el1 = document.querySelector('.div2');
+        var el2 = document.querySelector('span');
+        function m(e){
+            var chX = e.changedTouches && e.changedTouches[0].pageX;
+            var chY = e.changedTouches && e.changedTouches[0].pageY;
+            addPixel(chX, chY);
+            el2.innerHTML += e.type + ' ' + ' ' + e.currentTarget.classList[0] + ' : ' + (new Date().getTime() - l) + '</br>';
+            l = new Date().getTime();
+            e.stopPropagation();
+        }
+
+        function addPixel(chX, chY) {
+            if (!chX || !chY) {
+                return false;
+            }
+            var div = document.createElement('div');
+            div.classList.add('pixel');
+            div.style.left = chX + 'px';
+            div.style.top = chY + 'px';
+            document.body.appendChild(div)
+        }
+        el.addEventListener('click', m);
+
+        el.addEventListener('mouseup', m);
+
+        el.addEventListener('touchstart', m);
+
+        el.addEventListener('touchmove', m);
+
+        el.addEventListener('touchend', m);
+
+        el1.addEventListener('click', m);
+
+        el1.addEventListener('mouseup', m);
+
+        el1.addEventListener('touchstart', m);
+
+        el1.addEventListener('touchmove', m);
+
+        el1.addEventListener('touchend', m);
+
+    </script>
+</body>
+</html>
